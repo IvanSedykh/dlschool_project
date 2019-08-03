@@ -50,8 +50,10 @@ def send_prediction_on_photo(bot, update):
 def cancel(context, update):
 	user = update.message.from_user
 	logger.info("User %s canceled the conversation.", user.first_name)
-	update.message.reply_text('Bye! I hope we can talk again some day.',
-							  reply_markup=ReplyKeyboardRemove())
+	update.message.reply_text(
+		'Bye! I hope we can talk again some day.',
+		reply_markup=ReplyKeyboardRemove()
+	)
 
 	return ConversationHandler.END
 
@@ -65,7 +67,8 @@ def start(context, update):
 		'Hi! My name is Artist Bot. I will make an artwork you. '
 		'Send /cancel to stop talking to me.\n\n'
 		'Which style do you prefer?',
-		reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
+		reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
+	)
 
 	return GENDER
 
@@ -75,9 +78,11 @@ def gender(context, update):
 	chat_id = update.message.chat_id
 	info[chat_id] = [update.message.text, None]
 	logger.info("Style of %s: %s", user.first_name, update.message.text)
-	update.message.reply_text('Okay. Now you, dumbass, must send me goddamn picture\n'
-							  'Be fast, faggot!',
-							  reply_markup=ReplyKeyboardRemove())
+	update.message.reply_text(
+		'Okay. Now you, dumbass, must send me goddamn picture\n'
+		'Be fast, faggot!',
+		reply_markup=ReplyKeyboardRemove()
+	)
 
 	return PHOTO
 
